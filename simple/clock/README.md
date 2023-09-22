@@ -1,4 +1,4 @@
-# Digital Clock in Javascript
+# [Digital Clock in Javascript](https://codepen.io/arskeliss/pen/dywdRzj)
 
 ### Basic digital clock using DOM and Javascript
 
