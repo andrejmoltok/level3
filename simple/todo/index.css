@@ -1,0 +1,35 @@
+#container {
+    width: 500px;
+    margin: auto;
+}
+
+#container > h2 {
+    text-align: center;
+}
+
+#app {
+    width: 400px;
+    height: auto;
+    margin: auto;
+}
+
+#addTodo {
+    width: 360px;
+    height: 80px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+#inputTodo {
+    margin: 15px auto;
+    width: 350px;
+}
+
+#options {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
