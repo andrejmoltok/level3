@@ -3,7 +3,7 @@ body, html {
 }
 
 #container {
-    width: 55%;
+    width: 700px;
     height: 220px;
     position: absolute;
     top: 50%;
@@ -15,7 +15,7 @@ body, html {
 }
 
 #current {
-    width: 50%;
+    width: 600px;
     height: 100%;
     margin: auto;
     display: flex;

@@ -18,7 +18,7 @@ function createClock() {
 
     // write the current time into the selected div
     // using ternary operator to better visual appearance
-    return current.innerHTML = `${hours + ":" + (minutes < 10 ? ('0' + minutes) : minutes) + ":" + (seconds < 10 ? ('0' + seconds) : seconds)}`;
+    return current.innerHTML = `${(hours < 10 ? ('0' + hours) : hours) + ":" + (minutes < 10 ? ('0' + minutes) : minutes) + ":" + (seconds < 10 ? ('0' + seconds) : seconds)}`;
 }
 
 // using setInterval to refresh the time every second
