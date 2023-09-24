@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Expense Tracker</title>
+        <meta name="description" content="Expense Tracker App">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="index.css">
+    </head>
+    <body>
+        <div id="container">
+            <h2>Expense Tracker</h2>
+            <div id="expenseInput">    
+                <!-- <div id="expenseText">Text</div> -->
+                <div id="expenseCatAmnt">
+                    <div id="expenseCategories">
+                        <div id="expenseMainCategory">
+                            <label for="expMainCat">Main category: </label>
+                            <select name="expenseCategory" id="expMainCat" onChange='updateSubcategories()'>
+                                <option value="">-------------------</option>
+                                <option value="housing">Housing</option>
+                                <option value="transportation">Transportation</option>
+                                <option value="food">Food</option>
+                                <option value="health">Health</option>
+                                <option value="entertainment">Entertainment</option>
+                                <option value="utilities">Utilities</option>
+                                <option value="education">Education</option>
+                                <option value="debt">Debt Payments</option>
+                                <option value="savings">Savings</option>
+                                <option value="personal">Personal Care</option>
+                                <option value="clothing">Clothing</option>
+                                <option value="gifts">Gifts and Donations</option>
+                                <option value="insurance">Insurance</option>
+                                <option value="taxes">Taxes</option>
+                                <option value="travel">Travel</option>
+                                <option value="pets">Pets</option>
+                                <option value="childcare">Childcare</option>
+                                <option value="misc">Miscellaneous</option>
+                            </select>
+                        </div>
+                        <div id="expenseSubCategory">
+                            <label for="expSubCat">Subcategory: </label>
+                            <select id="expSubCat">
+                                <option value="">-------------------</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div id="expenseMoney">
+                        <div id="expenseAmount">
+                            <label for="expAmnt">Amount: </label>
+                            <input type="number" id="expAmnt"/>
+                        </div>
+                        <div id="expenseCurrency">
+                            <label for="currency">Currency: </label>
+                            <select id="currency">
+                                <option value="USD">$ (US Dollar)</option>
+                                <option value="EUR">€ (Euro)</option>
+                                <option value="GBP">£ (British Pound)</option>
+                                <option value="JPY">¥ (Japanese Yen)</option>
+                                <option value="AUD">$ (Australian Dollar)</option>
+                                <option value="CAD">$ (Canadian Dollar)</option>
+                                <option value="CHF">Fr (Swiss Franc)</option>
+                                <option value="CNY">¥ (Chinese Yuan)</option>
+                                <option value="INR">₹ (Indian Rupee)</option>
+                                <option value="SGD">$ (Singapore Dollar)</option>
+                                <option value="NZD">$ (New Zealand Dollar)</option>
+                                <option value="ZAR">R (South African Rand)</option>
+                                <option value="AED">د.إ (United Arab Emirates Dirham)</option>
+                                <option value="MXN">$ (Mexican Peso)</option>
+                            </select>
+                        </div>
+                        <div id="expenseAdd">
+                            <button id="expAdd" onClick="expenseAdd()">Add</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="expenseTable">
+                <div id="header">
+                    <div id="main">Main Category</div>
+                    <div id="sub">Sub Category</div>
+                    <div id="amount">Amount</div>
+                </div>
+            </div>
+            <div id="expenseTotal">
+                <div id="expTtl"></div>
+            </div>
+        </div>
+        <script src="index.js" async defer>
+        </script>
+    </body>
+</html>

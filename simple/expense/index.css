@@ -1,0 +1,150 @@
+html, body {
+    background-color: black;
+    color: white;
+}
+
+#container {
+    margin: auto;
+    width: 50%;
+    min-height: 250px;
+    border: 1px solid gray;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+#expenseInput {
+    width: 95%;
+    height: 150px;
+    border: 1px solid gray;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+#expenseText {
+    background-color: antiquewhite;
+    height: 70%;
+}
+
+#expenseCatAmnt {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 55px;
+    height: 100%;
+    background-color: darkolivegreen;
+}
+
+#expenseCategories {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+#expenseMainCategory {
+    display: flex;
+    flex-direction: row;
+    height: 20px;
+}
+
+#expenseMainCategory > label {
+    padding: 0px 10px;
+}
+
+#expMainCat {
+    width: 150px;
+}
+
+#expSubCat {
+    width: 150px;
+}
+
+#expenseSubCategory {
+    display: flex;
+    flex-direction: row;
+    height: 20px;
+}
+
+#expenseSubCategory > label {
+    padding: 0px 23px 0px 10px;
+}
+
+#expenseMoney {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 50%;
+}
+
+#expAmnt {
+    width: 100px;
+}
+
+#expenseCurrency {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+#currency {
+    width: 35px;
+}
+
+#expenseTable {
+    width: 95%;
+    min-height: 18px;
+    border: 1px solid gray;
+    display: flex;
+    flex-direction: column;
+}
+
+#header {
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+}
+
+#header > :last-child {
+    background-color: darkolivegreen;
+    color: antiquewhite;
+    border: 1px solid antiquewhite;
+}
+
+#main, #sub, #amount {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: antiquewhite;
+    border: 1px solid darkolivegreen;
+    width: 50%;
+    color: black;
+}
+
+#main {
+    width: 60%;
+}
+
+#expenseAdd {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+#expenseTotal {
+    width: 95%;
+    border: 1px solid antiquewhite;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+#expTtl {
+    padding-right: 100px;
+    color: antiquewhite;
+    height: 25px;
+}
