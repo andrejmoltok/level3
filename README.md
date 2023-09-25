@@ -5,6 +5,7 @@
 2. [ToDo App](https://codepen.io/arskeliss/pen/QWzQgMj)
 3. [Color Flipper](https://codepen.io/arskeliss/pen/NWeygjW)
 4. [Expense Tracker w/ localStorage](https://codepen.io/arskeliss/pen/gOZvNpd)
+5. [Vowel Counter](https://codepen.io/arskeliss/pen/xxmWpWm)
 ### Intermediate (minimal framework usage)
 ### Capstone (heavy framework usage)
 
