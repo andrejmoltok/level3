@@ -19,14 +19,20 @@ html, body {
     align-items: center;
 }
 
-#converter > input[type="text"] {
+#converter > div > input[type="text"] {
     width: 400px;
 }
 
-#converter > input[type="button"] {
+#converter > div > input[type="button"] {
     margin: 10px;
 }
 
 #result {
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 45px;
 }
