@@ -9,4 +9,4 @@
 ### Intermediate (minimal framework usage)
 ### Capstone (heavy framework usage)
 
-Based on Andy Sterkowitz(yt)
+Based on [Andy Sterkowitz](https://github.com/andysterks/three-levels-of-projects)
