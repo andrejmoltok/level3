@@ -1,0 +1,28 @@
+html, body {
+    background-color: black;
+    color: antiquewhite;
+}
+
+#container {
+    width: 50%;
+    margin: auto;
+    border: 1px solid darkslategray;
+    text-align: center;
+}
+
+ul {
+    list-style-type: none;
+}
+
+li {
+    padding: 10px 0px;
+}
+
+a {
+    text-decoration: none;
+    color: antiquewhite;
+}
+
+#c {
+    border: 1px solid darkslategray;
+}
