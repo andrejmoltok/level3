@@ -88,6 +88,7 @@ function capitalizeFirstLetter(string) {
 }
 
 function expenseAdd() {
+    
     const total = document.getElementById('expTtl');
     const mainCategory = document.getElementById('expMainCat').value;
     const subCategory = document.getElementById('expSubCat').value;
@@ -114,7 +115,7 @@ function expenseAdd() {
         <div style="display: flex; flex-direction: row; justify-content: center; align-items: center; text-align: center; background-color: darkolivegreen; width: 50%;">${amount} ${currency}</div>
     `;
 
-    expenseTable.appendChild(newRow);
+    
 
     const expenseData = {
         mainCategory: capitalizedMainCategory,
@@ -123,7 +124,13 @@ function expenseAdd() {
         currency: currency
     };
 
-    window.localStorage.setItem(subCategory, JSON.stringify(expenseData));
+    if (mainCategory !== "" && subCategory !== "" && amount !== null && currency !== "") {
+        expenseTable.appendChild(newRow);
+        window.localStorage.setItem(subCategory, JSON.stringify(expenseData));
+    } else {
+        alert('Please fill in the form before submission!');
+        return false;
+    }
     total.textContent = `Total: ${expenseTotal()}`;
 
     document.getElementById('expMainCat').value = '';
