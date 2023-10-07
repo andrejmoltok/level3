@@ -35,5 +35,5 @@ flipper.addEventListener('click',function () {
     bgtxt.style.justifyContent = 'center';
     bgtxt.style.alignItems = 'center';
     
-    bgtxt.textContent = `BackgroundColor: ${colors[randomIndex]}`
+    bgtxt.textContent = `Color: ${colors[randomIndex]}`
 });

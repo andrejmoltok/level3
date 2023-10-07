@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Weight Tracker - Chart</title>
+        <meta name="description" content="Weight Tracker Chart Page">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="./../index.css">
+    </head>
+    <body>
+        <div id="container">
+            <header>
+                <h2>Weight Tracker - Chart</h2>
+            </header>
+            <div id="navbar">
+                <ul id="nav">
+                    <li id="navitem"><a href="../index.html">Home</a></li>
+                    <li id="navitem"><a href="../profile/profile.html">Profile</a></li>
+                    <li id="navitem"><a href="#" style="text-decoration: underline;">Chart</a></li>
+                </ul>
+            </div>
+
+            <div id="chartInput">
+                <div id="input">
+                    <div id="yearSelectDiv">
+                        <fieldset>
+                            <legend>Year</legend>
+                            <label for="yearSelect">Select year: </label>
+                            <select name="yearSelect" id="yearSelect">
+                                <option value="" selected>--------------------</option>
+                            </select>
+                        </fieldset>
+                    </div>
+                    <div id="monthSelectDiv">
+                        <fieldset>
+                            <legend>Month</legend>
+                            <label for="monthSelect">Select month: </label>
+                            <select name="monthSelect" id="monthSelect">
+                                <option value="" selected>--------------------</option>
+                            </select>
+                        </fieldset>
+                    </div>
+                    <div id="chartInputDiv">
+                        <fieldset>
+                            <legend>Weight</legend>
+                            <div>
+                                <label for="weightInput">Weight input:</label>
+                                <input type="number" name="weightInput" id="weightInput" required/>
+                            </div>
+                            <input type="button" value="Add Weight" id="addButton" />
+                        </fieldset>
+                    </div>
+                </div>
+                <div class="canvas">
+                    <canvas id="canvas"></canvas>
+                </div>
+            </div>
+
+            <div id="attrib">Images by 
+                <a href="https://www.freepik.com/free-vector/anonymous-avatars-grey-circles_44471922.htm#query=simple%20male%20avatar&position=24&from_view=search&track=ais" style="margin: 0px 5px;">juicy_fish</a>
+                 on Freepik - Copyright (c) <a href="https://github.com/andrejmoltok" target="_blank" style="margin: 0px 5px;">Paul Andrei Ciocan</a> - 2023
+            </div>
+        </div>
+        <script src="chart.js" async defer></script>
+    </body>
+</html>

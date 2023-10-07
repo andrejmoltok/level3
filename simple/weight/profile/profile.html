@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Weight Tracker - Profile</title>
+        <meta name="description" content="Weight Tracker Profile Page">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="./../index.css">
+    </head>
+    <body>
+        <div id="container">
+            <header>
+                <h2>Weight Tracker - Profile</h2>
+            </header>
+            <div id="navbar">
+                <ul id="nav">
+                    <li id="navitem"><a href="../index.html">Home</a></li>
+                    <li id="navitem"><a href="#" style="text-decoration: underline;">Profile</a></li>
+                    <li id="navitem"><a href="../chart/chart.html">Chart</a></li>
+                </ul>
+            </div>
+            <div id="profile">
+                <form id="profileForm">
+
+                    <div id="infoAvatar">
+                        <div id="avatarDiv">
+                            <img id="avatar" src="./male.jpg" alt="Avatar">
+                        </div>
+
+                        <div id="nameAgeSex">
+                            <div id="name">
+                                <label for="firstName">First Name:</label>
+                                <input type="text" id="firstName" name="fN" required>
+                            </div>
+                            
+                            <div id="age">
+                                <label for="ageInput">Age:</label>
+                                <input type="number" id="ageInput" name="age" min='16' max='70' required>
+                            </div>
+
+                            <div id="sex">
+                                <div>
+                                    <label>Sex:</label><br>
+                                </div>
+                                <div>
+                                    <input type="radio" id="male" name="sex" value="male" checked>
+                                    <label for="male" id="maleLabel">Male</label>
+                                </div>
+                                <div>
+                                    <input type="radio" id="female" name="sex" value="female">
+                                    <label for="female" id="femaleLabel">Female</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="startWeight">
+                        <label for="startingWeight">Starting Weight:</label>
+                        <input type="number" id="startingWeight" name="startingWeight" step="any" min='45' max='300' required>
+                        <select name="weightUnit" id="startingWeightUnit">
+                            <option value="kg">Kg</option>
+                            <option value="lbs">Lbs</option>
+                        </select>
+                    </div>
+
+                    <div id="height">
+                        <div id="centimeter">
+                            <label for="heightCm">Height:</label>
+                            <input type="number" id="heightCm" name="heightCm">
+                        </div>
+                        <div id="heightFeetInches" style="display: none;">
+                            <label for="heightFeet">Feet:</label>
+                            <input type="number" id="heightFeet" name="heightFeet">
+                        
+                            <label for="heightInches">Inches:</label>
+                            <input type="number" id="heightInches" name="heightInches">
+                        </div>
+                        <div id="unit">
+                            <label for="heightUnit" id="heightUnitLabel">Unit:</label>
+                            <select id="heightUnit" name="heightUnit">
+                                <option value="cm">Centimeters (cm)</option>
+                                <option value="ft">Feet and Inches (ft)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div id="save">
+                        <input id="saveButton" type="submit" value="Save Profile">
+                        <input id="deleteButton" type="submit" value="Delete Profile" style="display: none;" />
+                    </div>
+                </form>
+            </div>
+            <div id="attrib">Images by 
+                <a href="https://www.freepik.com/free-vector/anonymous-avatars-grey-circles_44471922.htm#query=simple%20male%20avatar&position=24&from_view=search&track=ais" style="margin: 0px 5px;">juicy_fish</a>
+                 on Freepik - Copyright (c) <a href="https://github.com/andrejmoltok" target="_blank" style="margin: 0px 5px;">Paul Andrei Ciocan</a> - 2023
+            </div>
+        </div>
+        <script src="./profile.js" async defer></script>
+    </body>
+</html>

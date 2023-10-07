@@ -1,9 +1,7 @@
 document.getElementById('expenseTable').addEventListener('click', function(event) {
     const target = event.target;
 
-    if (target.id === 'delete-button') {
-        const expRow = document.getElementsByClassName('expense-row')[0];
-        
+    if (target.id === 'delete-button') {        
         const row = target.closest('.expense-row');
         const subCategoryElement = row.querySelector('#subcategory');
         const subCategory = subCategoryElement.textContent.trim();
@@ -33,7 +31,7 @@ window.onload = function() {
                 <div id="delete-button" style="display: flex; flex-direction: row; justify-content: center; align-items: center; text-align: center; background-color: darkolivegreen; width: 10%;">X</div>
                 <div style="display: flex; flex-direction: row; justify-content: center; align-items: center; text-align: center; color: black; width: 48%;">${expenseData.mainCategory}</div>
                 <div style="display: flex; flex-direction: row; justify-content: center; align-items: center; color: black;">></div>
-                <div id="subcategory"style="display: flex; flex-direction: row; justify-content: center; align-items: center; text-align: center; color: black; width: 50%;">${expenseData.subCategory}</div>
+                <div id="subcategory" style="display: flex; flex-direction: row; justify-content: center; align-items: center; text-align: center; color: black; width: 50%;">${expenseData.subCategory}</div>
                 <div style="display: flex; flex-direction: row; justify-content: center; align-items: center; text-align: center; background-color: darkolivegreen; width: 50%;">${expenseData.amount} ${expenseData.currency}</div>
             `;
             document.getElementById('expenseTable').appendChild(newRow);
@@ -114,8 +112,6 @@ function expenseAdd() {
         <div id="subcategory"; style="display: flex; flex-direction: row; justify-content: center; align-items: center; text-align: center; color: black; width: 50%;">${subCategory}</div>
         <div style="display: flex; flex-direction: row; justify-content: center; align-items: center; text-align: center; background-color: darkolivegreen; width: 50%;">${amount} ${currency}</div>
     `;
-
-    
 
     const expenseData = {
         mainCategory: capitalizedMainCategory,
