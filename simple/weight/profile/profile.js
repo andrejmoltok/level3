@@ -194,6 +194,7 @@ profileForm.addEventListener('submit', function (event) {
             },
         ],
         dotCoords: [],
+        hoverCoords: [],
     };
 
     localStorage.removeItem('saveMessageShown');

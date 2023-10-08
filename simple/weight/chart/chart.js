@@ -42,44 +42,51 @@ addButton.addEventListener("click", function () {
     const userProfile = JSON.parse(localStorage.getItem("userProfile"));
 
     const currentDate = new Date();
-
-    const dayNumber = currentDate.getDay();
-
-    const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-    const dayName = daysOfWeek[dayNumber];
-
     const monthDay = currentDate.getDate();
 
-    const monthNumber = currentDate.getMonth();
+    const existingEntry = userProfile.weightEntries.find(entry => entry.monthDay === monthDay);
 
-    const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-    const month = months[monthNumber];
+    if (existingEntry) {
+        // Entry for the current day already exists, you can handle this case, for example, show an alert.
+        alert("An entry for today already exists. You cannot add multiple entries for the same day.");
+        weightInput.value = null;
+    } else {
 
-    const year = new Date().getFullYear();
+        const dayNumber = currentDate.getDay();
 
-    let newWeightInputData = {
-        year: year,
-        month: month,
-        monthDay: monthDay,
-        dayName: dayName,
-        weightInput: {
-            value: weightInput.value,
-            unit: userProfile.startingWeight.unit,
-        },
-    };
+        const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        const dayName = daysOfWeek[dayNumber];
 
-    // Push the new weight input data into the userProfile
-    userProfile.weightEntries.push(newWeightInputData);
+        const monthNumber = currentDate.getMonth();
 
-    // Save the updated userProfile back to local storage
-    localStorage.setItem("userProfile", JSON.stringify(userProfile));
+        const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+        const month = months[monthNumber];
 
-    weightInput.value = null;
+        const year = new Date().getFullYear();
 
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+        let newWeightInputData = {
+            year: year,
+            month: month,
+            monthDay: monthDay,
+            dayName: dayName,
+            weightInput: {
+                value: weightInput.value,
+                unit: userProfile.startingWeight.unit,
+            },
+        };
 
-    drawData();
+        // Push the new weight input data into the userProfile
+        userProfile.weightEntries.push(newWeightInputData);
 
+        // Save the updated userProfile back to local storage
+        localStorage.setItem("userProfile", JSON.stringify(userProfile));
+
+        weightInput.value = null;
+
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        drawData();
+    }
 });
 
 // Create select tag options based on years and months entries
@@ -238,6 +245,8 @@ function drawData() {
 
         // Set for uniqueDotCoords
         const uniqueDotCoords = new Set();
+        // Set for uniqueHoverCoords
+        const uniqueHoverCoords = new Set();
 
         // draw lines based weightEntries array of objects
         for (let i = 0; i < numLines; i++) {
@@ -270,10 +279,12 @@ function drawData() {
                         ctx.lineTo(x, startY - y);
                         ctx.stroke();
                     }
-                    ctx.fillText((i + 1).toString(), x - 5, (startY + 25));
+                    ctx.fillText((i + 1).toString(), (x - 5), (startY + 25));
+                    uniqueHoverCoords.add({ x: (x - 5), y: (startY + 25) });
                 }
             }
         };
+        userProfile.hoverCoords = Array.from(uniqueHoverCoords);
         userProfile.dotCoords = Array.from(uniqueDotCoords);
         localStorage.setItem("userProfile", JSON.stringify(userProfile));
     };
@@ -295,6 +306,41 @@ yearSelect.addEventListener('change', function () {
 
             if (selectedMonth !== "") {
                 drawData();
+                canvas.addEventListener('mousemove', function (e) {
+
+                    const userProfile = JSON.parse(localStorage.getItem("userProfile"));
+
+                    const rect = canvas.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+
+                    // create popup-on-hover onto the canvas for the specific days
+                    const hoverRadius = 8;
+
+                    for (let i = 0; i < userProfile.weightEntries.length; i++) {
+                        for (let j = 0; j < userProfile.hoverCoords.length; j++) {
+                            const hover = userProfile.hoverCoords[j];
+                            const distance = Math.sqrt(Math.pow(x - hover.x, 2) + Math.pow(y - hover.y, 2));
+                            if (distance <= hoverRadius) {
+                                if (userProfile.weightEntries[i] !== undefined && (j + 1) === userProfile.weightEntries[i].monthDay) {
+                                    ctx.fillStyle = "darkolivegreen";
+                                    ctx.rect(x, y - 50, 120, 50);
+                                    ctx.fill();
+                                    ctx.font = "14px Arial";
+                                    ctx.fillStyle = "antiquewhite";
+                                    ctx.fillText(`Day: ${userProfile.weightEntries[i].dayName} ${userProfile.weightEntries[i].monthDay}`, x + 3, y - 37);
+                                    ctx.fillText(`Month: ${userProfile.weightEntries[i].month}`, x + 3, y - 21);
+                                    ctx.fillText(`Weight: ${userProfile.weightEntries[i].weightInput.value} ${userProfile.weightEntries[i].weightInput.unit}`, x + 3, y - 5);
+                                    break;
+                                }
+                            } else {
+                                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                                drawData();
+
+                            }
+                        }
+                    }
+                });
             } else {
                 drawNoData();
             }
