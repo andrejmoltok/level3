@@ -129,12 +129,20 @@ if (localStorage.getItem("userProfile")) {
         option.value = year;
         option.textContent = year;
         yearSelect.appendChild(option);
-    }
+    };
 
-    yearSelect.addEventListener("change", () => {
+    yearSelect.addEventListener('change', function () {
 
-        // Get the selected year
+        const userProfile = JSON.parse(localStorage.getItem("userProfile"));
+
         const selectedYear = yearSelect.value;
+
+        monthSelect.innerHTML = '';
+
+        const emptyOption = document.createElement('option');
+        emptyOption.value = '';
+        emptyOption.textContent = '-------------------';
+        monthSelect.appendChild(emptyOption);
 
         // Filter months based on the selected year
         const filteredMonths = months.filter((month) => {
@@ -142,13 +150,63 @@ if (localStorage.getItem("userProfile")) {
             return entry;
         });
 
-        // Populate month select tag based on the filtered months
-        for (const month of filteredMonths) {
-            const option = document.createElement("option");
-            option.value = month;
-            option.textContent = month;
-            monthSelect.appendChild(option);
-        }
+        if (selectedYear === '') {
+            drawNoData();
+        } else {
+            // Populate month select tag based on the filtered months
+            for (const month of filteredMonths) {
+                const option = document.createElement("option");
+                option.value = month;
+                option.textContent = month;
+                monthSelect.appendChild(option);
+            }
+        };
+
+        monthSelect.addEventListener("change", function () {
+
+            const selectedMonth = monthSelect.value;
+
+            if (selectedMonth !== "") {
+                drawData();
+                canvas.addEventListener('mousemove', function (e) {
+
+                    const userProfile = JSON.parse(localStorage.getItem("userProfile"));
+
+                    const rect = canvas.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+
+                    // create popup-on-hover onto the canvas for the specific days
+                    const hoverRadius = 8;
+
+                    for (let i = 0; i < userProfile.weightEntries.length; i++) {
+                        for (let j = 0; j < userProfile.hoverCoords.length; j++) {
+                            const hover = userProfile.hoverCoords[j];
+                            const distance = Math.sqrt(Math.pow(x - hover.x, 2) + Math.pow(y - hover.y, 2));
+                            if (distance <= hoverRadius) {
+                                if (userProfile.weightEntries[i] !== undefined && (j + 1) === userProfile.weightEntries[i].monthDay) {
+                                    ctx.fillStyle = "#504507";
+                                    ctx.rect(x, y - 50, 120, 50);
+                                    ctx.fill();
+                                    ctx.font = "14px Arial";
+                                    ctx.fillStyle = "antiquewhite";
+                                    ctx.fillText(`Date: ${userProfile.weightEntries[i].monthDay} ${userProfile.weightEntries[i].month}`, x + 3, y - 37);
+                                    ctx.fillText(`Day: ${userProfile.weightEntries[i].dayName}`, x + 3, y - 21);
+                                    ctx.fillText(`Weight: ${userProfile.weightEntries[i].weightInput.value} ${userProfile.weightEntries[i].weightInput.unit}`, x + 3, y - 5);
+                                    break;
+                                }
+                            } else {
+                                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                                drawData();
+
+                            }
+                        }
+                    }
+                });
+            } else {
+                drawNoData();
+            }
+        });
     });
 };
 
@@ -289,66 +347,6 @@ function drawData() {
         localStorage.setItem("userProfile", JSON.stringify(userProfile));
     };
 };
-
-// Month Select tag
-const monthSelect = document.getElementById('monthSelect');
-//Year select tag
-const yearSelect = document.getElementById('yearSelect');
-
-yearSelect.addEventListener('change', function () {
-
-    const selectedYear = yearSelect.value;
-
-    if (selectedYear !== "") {
-        monthSelect.addEventListener("change", function () {
-
-            const selectedMonth = monthSelect.value;
-
-            if (selectedMonth !== "") {
-                drawData();
-                canvas.addEventListener('mousemove', function (e) {
-
-                    const userProfile = JSON.parse(localStorage.getItem("userProfile"));
-
-                    const rect = canvas.getBoundingClientRect();
-                    const x = e.clientX - rect.left;
-                    const y = e.clientY - rect.top;
-
-                    // create popup-on-hover onto the canvas for the specific days
-                    const hoverRadius = 8;
-
-                    for (let i = 0; i < userProfile.weightEntries.length; i++) {
-                        for (let j = 0; j < userProfile.hoverCoords.length; j++) {
-                            const hover = userProfile.hoverCoords[j];
-                            const distance = Math.sqrt(Math.pow(x - hover.x, 2) + Math.pow(y - hover.y, 2));
-                            if (distance <= hoverRadius) {
-                                if (userProfile.weightEntries[i] !== undefined && (j + 1) === userProfile.weightEntries[i].monthDay) {
-                                    ctx.fillStyle = "darkolivegreen";
-                                    ctx.rect(x, y - 50, 120, 50);
-                                    ctx.fill();
-                                    ctx.font = "14px Arial";
-                                    ctx.fillStyle = "antiquewhite";
-                                    ctx.fillText(`Day: ${userProfile.weightEntries[i].dayName} ${userProfile.weightEntries[i].monthDay}`, x + 3, y - 37);
-                                    ctx.fillText(`Month: ${userProfile.weightEntries[i].month}`, x + 3, y - 21);
-                                    ctx.fillText(`Weight: ${userProfile.weightEntries[i].weightInput.value} ${userProfile.weightEntries[i].weightInput.unit}`, x + 3, y - 5);
-                                    break;
-                                }
-                            } else {
-                                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                                drawData();
-
-                            }
-                        }
-                    }
-                });
-            } else {
-                drawNoData();
-            }
-        });
-    }
-});
-
-
 
 // When there is no data to display,
 // call drawNoData() o
